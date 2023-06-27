@@ -144,16 +144,16 @@ void Simulation::render()
 	//Render
 	this->DrawScene();
 
+	//Draw sun
+	if (this->shaderChoice == 0)
+	{
+		this->DrawSun();
+	}
 	this->DrawScreen();
 
 	if (this->showBorder)
 	{
 		this->DrawCube();
-	}
-	//Draw sun
-	if (this->shaderChoice == 0)
-	{
-		this->DrawSun();
 	}
 
 	this->DrawText();

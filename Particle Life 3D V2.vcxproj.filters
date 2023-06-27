@@ -21,7 +21,7 @@
     <ClCompile Include="src\glad.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\Life3D_Engine.cpp">
+    <ClCompile Include="src\WindowHandler.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Life3D_Particles.cpp">
@@ -63,9 +63,12 @@
     <ClCompile Include="src\Simulation.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Life3D_Engine.h">
+    <ClInclude Include="src\WindowHandler.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Life3D_Particles.h">
@@ -78,6 +81,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Simulation.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -144,8 +144,9 @@
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\glad.c" />
-    <ClCompile Include="src\Life3D_Engine.cpp" />
+    <ClCompile Include="src\WindowHandler.cpp" />
     <ClCompile Include="src\Life3D_Particles.cpp" />
     <ClCompile Include="src\Life_3D.cpp" />
     <ClCompile Include="src\ModelHandler.cpp" />
@@ -154,7 +155,8 @@
     <ClCompile Include="src\TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Life3D_Engine.h" />
+    <ClInclude Include="src\Engine.h" />
+    <ClInclude Include="src\WindowHandler.h" />
     <ClInclude Include="src\Life3D_Particles.h" />
     <ClInclude Include="src\ModelHandler.h" />
     <ClInclude Include="src\Simulation.h" />

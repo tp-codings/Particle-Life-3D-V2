@@ -2,16 +2,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include <Shader/shader.h>
-#include <Camera/camera.h>
-#include <ModelLoader/model.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
-
 #include <iostream>
 
 #include <imgui/imconfig.h>
@@ -23,15 +13,20 @@
 #include "ModelHandler.h"
 #include "Simulation.h"
 
-class Life3D_Engine
+class WindowHandler
 {
 public:
-	Life3D_Engine();
-	void run();
+	WindowHandler();
+
+	void update(bool mode, float speed);
+
+	float getDeltaTime();
+	GLFWwindow* getWindow();
+	glm::vec2 getWindowSize();
+	Camera getCamera();
+	int getFPS();
 
 private:
-
-	Simulation *ParticleLife;
 
 	//Window
 	int WINDOW_WIDTH;
@@ -39,6 +34,8 @@ private:
 	int windowPosX;
 	int windowPosY;
 	
+	bool viewMode;
+
 	GLFWwindow* window;
 
 	//Timing
@@ -59,7 +56,6 @@ private:
 
 	float cameraSpeed;
 
-
 	//Inits------------------------------------------------------------------------------
 
 	int initWindow();
@@ -70,7 +66,6 @@ private:
 	//Input------------------------------------------------------------------------------
 
 	void input();
-	//void processInput(GLFWwindow* window, Shader reflectionShader);
 
 	//Callbacks------------------------------------------------------------------------------
 
@@ -84,13 +79,9 @@ private:
 	static void scroll_callback_wrapper(GLFWwindow* window, double xoffset, double yoffset);
 
 	//Updates------------------------------------------------------------------------------
-
-	void update();
+	
 	void updateDeltaTime();
 	void updateCamera();
 
-	//Rendering------------------------------------------------------------------------------
-
-	void Draw();
 };
 
