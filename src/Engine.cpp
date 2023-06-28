@@ -27,16 +27,16 @@ void Engine::initVariables()
 {
 	this->windowHandler = new WindowHandler();
 	this->window = this->windowHandler->getWindow();
-	this->ParticleLife = new Simulation(this->window, this->windowHandler->getWindowSize().x, this->windowHandler->getWindowSize().y);
+	this->simulation = new Simulation(this->window, this->windowHandler->getWindowSize().x, this->windowHandler->getWindowSize().y);
 }
 
 void Engine::update()
 {
-	this->ParticleLife->update(this->windowHandler->getDeltaTime(), this->windowHandler->getFPS(), this->windowHandler->getCamera());
-	this->windowHandler->update(this->ParticleLife->getViewMode(), this->ParticleLife->getCameraSpeed());
+	this->simulation->update(this->windowHandler->getDeltaTime(), this->windowHandler->getFPS(), this->windowHandler->getCamera());
+	this->windowHandler->update(this->simulation->getViewMode(), this->simulation->getCameraSpeed());
 }
 
 void Engine::render()
 {
-	this->ParticleLife->render();
+	this->simulation->render();
 }

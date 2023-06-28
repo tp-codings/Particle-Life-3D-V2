@@ -9,7 +9,7 @@ public:
 	void run();
 
 private:
-	Simulation* ParticleLife;
+	Simulation* simulation;
 	WindowHandler* windowHandler;
 	GLFWwindow* window;
 

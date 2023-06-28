@@ -1,6 +1,7 @@
 #pragma once
 #include <ModelLoader/model.h>
 
+//Handler for easy transform and render Models with no instanced rendering
 class ModelHandler
 {
 public: 

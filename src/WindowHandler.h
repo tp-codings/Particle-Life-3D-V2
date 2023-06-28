@@ -50,11 +50,11 @@ private:
 	//Camera
 	Camera camera;
 
+	float cameraSpeed;
 	float lastMouseX;
 	float lastMouseY;
-	bool firstMouse;
 
-	float cameraSpeed;
+	bool firstMouse;
 
 	//Inits------------------------------------------------------------------------------
 

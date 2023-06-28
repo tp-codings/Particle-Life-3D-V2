@@ -6,9 +6,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
 #include FT_FREETYPE_H
 
+//Handles Textbuffer and font initialization and offers renderfunction for easy Textrendering 
 class TextRenderer
 {
 public:
@@ -31,6 +31,7 @@ private:
 
 	glm::mat4 projection;
 
+	//Buffer
 	unsigned int VAO;
 	unsigned int VBO;
 
