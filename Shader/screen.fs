@@ -60,11 +60,6 @@ void main()
 			for(int i = 0; i<9; i++)
 				col += sampleTex[i] * sharpnessKernel[i];
 			break;
-		case 1:
-		//Blur
-			for(int i = 0; i<9; i++)
-				col += sampleTex[i] * blurKernel[i];
-			break;
 		case 2:
 		//Edge detection
 			for(int i = 0; i<9; i++)

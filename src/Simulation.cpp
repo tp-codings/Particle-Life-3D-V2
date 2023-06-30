@@ -150,8 +150,10 @@ void Simulation::render()
 		this->DrawSun();
 	}
 
-	stbi_set_flip_vertically_on_load(GL_TRUE);
-	this->DrawSkyBox();
+	if (this->skyBoxChoice != 0)
+	{
+		this->DrawSkyBox();
+	}
 
 	this->DrawScreen();
 
@@ -294,8 +296,8 @@ void Simulation::initVariables()
 	//Settings
 	this->amount = 2000;
 	this->timeFactor = 0.7f;
-	this->postProcessingChoice = 7;
-	this->shaderChoice = 1;
+	this->postProcessingChoice = 1;
+	this->shaderChoice = 2;
 	this->distanceMax = 150.0f;
 	this->scale = 0.5f;
 	this->cubeSize = 250.0f;
@@ -337,6 +339,10 @@ void Simulation::initVariables()
 
 	//Skybox
 	this->oceanBox = new Skybox(this->ocean);
+	this->spaceBox = new Skybox(this->space);
+	this->forestBox = new Skybox(this->forest);
+	this->cityBox = new Skybox(this->city);
+	this->skyBoxChoice = 0;
 }
 
 void Simulation::initModels()
@@ -439,7 +445,7 @@ void Simulation::processInput(float deltaTime)
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_L) == GLFW_PRESS && !this->shadingTypeKeyPressed)
 	{
-		this->shaderChoice = ++this->shaderChoice % 2;
+		this->shaderChoice = ++this->shaderChoice % 3;
 		this->shadingTypeKeyPressed = true;
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_L) == GLFW_RELEASE)
@@ -448,11 +454,11 @@ void Simulation::processInput(float deltaTime)
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_0) == GLFW_PRESS)
 	{
-		this->postProcessingChoice = 7;
+		this->postProcessingChoice = 1;
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_1) == GLFW_PRESS)
 	{
-		this->postProcessingChoice = 1;
+		this->postProcessingChoice = 0;
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_2) == GLFW_PRESS)
 	{
@@ -465,6 +471,27 @@ void Simulation::processInput(float deltaTime)
 	if (glfwGetKey(this->window, GLFW_KEY_4) == GLFW_PRESS)
 	{
 		this->postProcessingChoice = 4;
+	}
+
+	if (glfwGetKey(this->window, GLFW_KEY_5) == GLFW_PRESS)
+	{
+		this->skyBoxChoice = 1;
+	}
+	if (glfwGetKey(this->window, GLFW_KEY_6) == GLFW_PRESS)
+	{
+		this->skyBoxChoice = 2;
+	}
+	if (glfwGetKey(this->window, GLFW_KEY_7) == GLFW_PRESS)
+	{
+		this->skyBoxChoice = 3;
+	}
+	if (glfwGetKey(this->window, GLFW_KEY_8) == GLFW_PRESS)
+	{
+		this->skyBoxChoice = 4;
+	}
+	if (glfwGetKey(this->window, GLFW_KEY_9) == GLFW_PRESS)
+	{
+		this->skyBoxChoice = 0;
 	}
 }
 
@@ -708,6 +735,8 @@ void Simulation::DrawScene()
 
 	this->particleShader.setInt("shininess", 512);
 	this->particleShader.setInt("shaderChoice", this->shaderChoice);
+	this->particleShader.setInt("skybox", 0);
+
 
 	//Update instanced matrix (transformation matrix)
 	int k = 0;
@@ -816,9 +845,9 @@ void Simulation::DrawSettings()
 
 		//Postprocessing
 		ImGui::Text("Postprocessing");
-		if (ImGui::Button("Blur"))
+		if (ImGui::Button("Sharpeness"))
 		{
-			this->postProcessingChoice = 1;
+			this->postProcessingChoice = 0;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Edges"))
@@ -838,17 +867,45 @@ void Simulation::DrawSettings()
 		ImGui::SameLine();
 		if (ImGui::Button("Normal"))
 		{
-			this->postProcessingChoice = 7;
+			this->postProcessingChoice = 1;
+		}
+	
+		ImGui::Text("Skybox");
+		if (ImGui::Button("Ocean"))
+		{
+			this->skyBoxChoice = 1;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Space"))
+		{
+			this->skyBoxChoice = 2;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Forest"))
+		{
+			this->skyBoxChoice = 3;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("City"))
+		{
+			this->skyBoxChoice = 4;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("No Skybox"))
+		{
+			this->skyBoxChoice = 0;
 		}
 
 		//Shading Choice
 		ImGui::Text("Shaderwahl");
 		const char* shading = "DirLightShading";
 		if (this->shaderChoice == 0)
+			shading = "ReflectionShading";
+		if (this->shaderChoice == 1)
 			shading = "NormalShading";
 		if (ImGui::Button(shading))
 		{
-			this->shaderChoice = ++this->shaderChoice % 2;
+			this->shaderChoice = ++this->shaderChoice % 3;
 		}
 
 		ImGui::SameLine();
@@ -951,7 +1008,22 @@ void Simulation::DrawCube()
 
 void Simulation::DrawSkyBox()
 {
-	this->oceanBox->render(this->skyboxShader, this->camera, this->projection);
+	switch (this->skyBoxChoice) {
+	case 1: 
+		this->oceanBox->render(this->skyboxShader, this->camera, this->projection);
+		break;
+	case 2:
+		this->spaceBox->render(this->skyboxShader, this->camera, this->projection);
+		break;
+	case 3:
+		this->forestBox->render(this->skyboxShader, this->camera, this->projection);
+		break;
+	case 4:
+		this->cityBox->render(this->skyboxShader, this->camera, this->projection);
+		break;
+	default:
+		break;
+	}
 }
 
 void Simulation::DrawSun()
@@ -983,9 +1055,15 @@ void Simulation::DrawText()
 
 	this->textRenderer->Draw(this->textShader, "Start: " + std::to_string(this->start), this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 1 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	this->textRenderer->Draw(this->textShader, "Borders: " + std::to_string(this->borders), this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 2 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-	std::string shading = "NormalShading";
-	if (this->shaderChoice == 0)
-		shading = "DirLightShading";
-	this->textRenderer->Draw(this->textShader, "Shading: " + shading, this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 3 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+	
+	std::string shading[] = { "DirLightShading", "ReflectionShading", "NormalShading"};
+	this->textRenderer->Draw(this->textShader, "Shading: " + shading[this->shaderChoice], this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 3 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	this->textRenderer->Draw(this->textShader, "Amount Particles: " + std::to_string(this->amount * 5), this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 4 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+	
+	std::string postprocessing[] = { "Sharpness", "Normal", "Edge Detection", "Inversion", "Grayscale"};
+	this->textRenderer->Draw(this->textShader, "Postprocessing: " + postprocessing[this->postProcessingChoice], this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 5 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+
+	std::string skyboxes[] = { "None", "Ocean", "Space", "Forest", "City" };
+	this->textRenderer->Draw(this->textShader, "Skybox: " + skyboxes[this->skyBoxChoice], this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 6 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+
 }

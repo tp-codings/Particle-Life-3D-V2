@@ -5,6 +5,7 @@ in vec2 TexCoords;
 in vec3 vColor;
 in vec3 Normal;
 in vec3 FragPos;
+in vec3 Position;
 
 uniform sampler2D texture_diffuse1;
 
@@ -22,6 +23,9 @@ uniform vec3 dirLightDir;
 uniform vec3 dirLightColor;
 
 uniform int shaderChoice;
+
+uniform samplerCube skybox; 
+
 
 void main()
 {    
@@ -59,6 +63,13 @@ void main()
             vec3 result = (ambient + diffuse + specular + dirDiffuse + dirSpecular) * vColor; 
             //vec3 result = (ambient+dirSpecular+dirDiffuse) * vColor; 
             FragColor = vec4(result, 1.0);
+            break;
+        case 1:
+            float ratio = 1.00 / 1.52;
+	        vec3 I = normalize(Position - viewPos); 
+	        vec3 reflection = reflect(I, normalize(Normal)); 
+	        vec3 refraction = refract(I, normalize(Normal), ratio);
+            FragColor = vec4(texture(skybox, reflection).rgb, 1.0);
             break;
 
         default:

@@ -88,6 +88,10 @@ private:
 	Camera camera;
 
 	Skybox *oceanBox;
+	Skybox* spaceBox;
+	Skybox* forestBox;
+	Skybox* cityBox;
+	int skyBoxChoice;
 	std::vector<std::string> ocean
 	{
 		"resources\\textures\\skybox\\right.jpg",
@@ -96,6 +100,34 @@ private:
 			"resources\\textures\\skybox\\bottom.jpg",
 			"resources\\textures\\skybox\\front.jpg",
 			"resources\\textures\\skybox\\back.jpg"
+	};
+
+	std::vector<std::string> space
+	{
+		"resources\\textures\\skybox\\space_1_right.jpg",
+			"resources\\textures\\skybox\\space_1_left.jpg",
+			"resources\\textures\\skybox\\space_1_top.jpg",
+			"resources\\textures\\skybox\\space_1_bottom.jpg",
+			"resources\\textures\\skybox\\space_1_front.jpg",
+			"resources\\textures\\skybox\\space_1_back.jpg"
+	};
+	std::vector<std::string> forest
+	{
+		"resources\\textures\\skybox\\forest_1_right.jpg",
+			"resources\\textures\\skybox\\forest_1_left.jpg",
+			"resources\\textures\\skybox\\forest_1_top.jpg",
+			"resources\\textures\\skybox\\forest_1_bottom.jpg",
+			"resources\\textures\\skybox\\forest_1_front.jpg",
+			"resources\\textures\\skybox\\forest_1_back.jpg"
+	};
+	std::vector<std::string> city
+	{
+		"resources\\textures\\skybox\\city_2_right.jpg",
+			"resources\\textures\\skybox\\city_2_left.jpg",
+			"resources\\textures\\skybox\\city_2_top.jpg",
+			"resources\\textures\\skybox\\city_2_bottom.jpg",
+			"resources\\textures\\skybox\\city_2_front.jpg",
+			"resources\\textures\\skybox\\city_2_back.jpg"
 	};
 
 	//Friction

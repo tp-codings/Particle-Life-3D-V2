@@ -7,8 +7,6 @@ WindowHandler::WindowHandler()
 	this->initWindow();
 	this->initVariables();
 	this->initCamera();
-
-	//stbi_set_flip_vertically_on_load(true);
 }
 
 
