@@ -149,12 +149,17 @@ void Simulation::render()
 	{
 		this->DrawSun();
 	}
+
+	stbi_set_flip_vertically_on_load(GL_TRUE);
+	this->DrawSkyBox();
+
 	this->DrawScreen();
 
 	if (this->showBorder)
 	{
 		this->DrawCube();
 	}
+
 
 	this->DrawText();
 
@@ -281,6 +286,7 @@ void Simulation::initShader()
 	this->cubeShader = Shader("Shader/cube.vs", "Shader/cube.fs");
 	this->sunShader = Shader("Shader/sun.vs", "Shader/sun.fs");
 	this->textShader = Shader("Shader/text.vs", "Shader/text.fs");
+	this->skyboxShader = Shader("Shader/cubemap.vs", "Shader/cubemap.fs");
 }
 
 void Simulation::initVariables()
@@ -328,6 +334,9 @@ void Simulation::initVariables()
 	this->randPosKeyPressed = false;
 	this->borderKeyPressed = false;
 	this->shadingTypeKeyPressed = false;
+
+	//Skybox
+	this->oceanBox = new Skybox(this->ocean);
 }
 
 void Simulation::initModels()
@@ -938,6 +947,11 @@ void Simulation::DrawCube()
 	this->borderBox->Translate(glm::vec3(1.0f));
 	this->borderBox->Scale(scaleFactor);
 	this->borderBox->Draw(&this->cubeShader, this->projection, this->view, BLUE_GREEN);
+}
+
+void Simulation::DrawSkyBox()
+{
+	this->oceanBox->render(this->skyboxShader, this->camera, this->projection);
 }
 
 void Simulation::DrawSun()

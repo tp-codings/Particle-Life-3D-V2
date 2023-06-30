@@ -165,6 +165,8 @@
   <ItemGroup>
     <None Include="Shader\cube.fs" />
     <None Include="Shader\cube.vs" />
+    <None Include="Shader\cubemap.fs" />
+    <None Include="Shader\cubemap.vs" />
     <None Include="Shader\particles.fs" />
     <None Include="Shader\particles.vs" />
     <None Include="Shader\screen.fs" />

@@ -6,9 +6,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <Shader/shader.h>
-#include <Camera/camera.h>
-#include <ModelLoader/model.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -17,6 +14,11 @@
 #include <imgui/imconfig.h>
 #include <imgui/imgui_impl_glfw.h>
 #include <imgui/imgui_impl_opengl3.h>
+
+#include <Shader/shader.h>
+#include <Camera/camera.h>
+#include <ModelLoader/model.h>
+#include <SkyBox/Skybox.h>
 
 #include "Life3D_Particles.h"
 #include "TextRenderer.h"
@@ -48,6 +50,7 @@ private:
 	Shader cubeShader;
 	Shader sunShader;
 	Shader textShader;
+	Shader skyboxShader;
 
 	//Matrizen
 	glm::mat4 projection;
@@ -83,6 +86,17 @@ private:
 	ModelHandler* sun;
 
 	Camera camera;
+
+	Skybox *oceanBox;
+	std::vector<std::string> ocean
+	{
+		"resources\\textures\\skybox\\right.jpg",
+			"resources\\textures\\skybox\\left.jpg",
+			"resources\\textures\\skybox\\top.jpg",
+			"resources\\textures\\skybox\\bottom.jpg",
+			"resources\\textures\\skybox\\front.jpg",
+			"resources\\textures\\skybox\\back.jpg"
+	};
 
 	//Friction
 	float TIME_STEP;
@@ -158,6 +172,7 @@ private:
 	void DrawSettings();
 	void DrawScreen();
 	void DrawCube();
+	void DrawSkyBox();
 	void DrawSun();
 	void DrawText();
 };

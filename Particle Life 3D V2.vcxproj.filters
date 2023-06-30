@@ -118,5 +118,11 @@
     <None Include="Shader\sun.vs">
       <Filter>Ressourcendateien</Filter>
     </None>
+    <None Include="Shader\cubemap.fs">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="Shader\cubemap.vs">
+      <Filter>Ressourcendateien</Filter>
+    </None>
   </ItemGroup>
 </Project>
