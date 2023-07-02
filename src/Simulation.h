@@ -26,7 +26,7 @@
 class Simulation
 {
 public:
-	Simulation(GLFWwindow* window, int WINDOW_WIDTH, int WINDOW_HEIGHT);
+	Simulation(GLFWwindow* window, int WINDOW_WIDTH, int WINDOW_HEIGHT, int amount);
 
 	void update(float deltaTime, int FPS, Camera camera);
 	void render();

@@ -25,9 +25,13 @@ void Engine::run()
 
 void Engine::initVariables()
 {
+	int amount = 0;
+	std::cout << "Eingabe Anzahl Partikel pro Typ: ";
+	std::cin >> amount;
+
 	this->windowHandler = new WindowHandler();
 	this->window = this->windowHandler->getWindow();
-	this->simulation = new Simulation(this->window, this->windowHandler->getWindowSize().x, this->windowHandler->getWindowSize().y);
+	this->simulation = new Simulation(this->window, this->windowHandler->getWindowSize().x, this->windowHandler->getWindowSize().y, amount);
 }
 
 void Engine::update()

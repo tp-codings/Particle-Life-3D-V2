@@ -53,11 +53,12 @@
 #define NEON_BLUE glm::vec3(0.29f, 0.59f, 0.95f)
 #define NEON_PURPLE glm::vec3(0.67f, 0.29f, 0.95f)
 
-Simulation::Simulation(GLFWwindow* window, int WINDOW_WIDTH, int WINDOW_HEIGHT)
+Simulation::Simulation(GLFWwindow* window, int WINDOW_WIDTH, int WINDOW_HEIGHT, int amount)
 {
 	this->window = window;
 	this->WINDOW_WIDTH = WINDOW_WIDTH;
 	this->WINDOW_HEIGHT = WINDOW_HEIGHT;
+	this->amount = amount;
 
 	this->initShader();
 	this->initVertices();
@@ -294,7 +295,6 @@ void Simulation::initShader()
 void Simulation::initVariables()
 {
 	//Settings
-	this->amount = 2000;
 	this->timeFactor = 0.7f;
 	this->postProcessingChoice = 1;
 	this->shaderChoice = 6;
