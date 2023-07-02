@@ -297,7 +297,7 @@ void Simulation::initVariables()
 	this->amount = 2000;
 	this->timeFactor = 0.7f;
 	this->postProcessingChoice = 1;
-	this->shaderChoice = 2;
+	this->shaderChoice = 6;
 	this->distanceMax = 150.0f;
 	this->scale = 0.5f;
 	this->cubeSize = 250.0f;
@@ -445,7 +445,7 @@ void Simulation::processInput(float deltaTime)
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_L) == GLFW_PRESS && !this->shadingTypeKeyPressed)
 	{
-		this->shaderChoice = ++this->shaderChoice % 3;
+		this->shaderChoice = ++this->shaderChoice % 7;
 		this->shadingTypeKeyPressed = true;
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_L) == GLFW_RELEASE)
@@ -733,6 +733,8 @@ void Simulation::DrawScene()
 	this->particleShader.setVec3("lightPos", glm::vec3(0.0f, 0.0f, 0.0f));
 	this->particleShader.setVec3("viewPos", camera.Position);
 
+	this->particleShader.setFloat("time", (float)glfwGetTime());
+
 	this->particleShader.setInt("shininess", 512);
 	this->particleShader.setInt("shaderChoice", this->shaderChoice);
 	this->particleShader.setInt("skybox", 0);
@@ -897,18 +899,42 @@ void Simulation::DrawSettings()
 		}
 
 		//Shading Choice
-		ImGui::Text("Shaderwahl");
-		const char* shading = "DirLightShading";
-		if (this->shaderChoice == 0)
-			shading = "ReflectionShading";
-		if (this->shaderChoice == 1)
-			shading = "NormalShading";
-		if (ImGui::Button(shading))
-		{
-			this->shaderChoice = ++this->shaderChoice % 3;
-		}
+		ImGui::Text("Shader Choice");
+		const char* shading[] = { "DirLightShading", "ReflectionShading", "OctreeShading", "GradientShading", "TimeGradientShading", "layerShading", "NormalShading"};
 
+		if (ImGui::Button(shading[0]))
+		{
+			this->shaderChoice = 0;
+		}
 		ImGui::SameLine();
+		if (ImGui::Button(shading[1]))
+		{
+			this->shaderChoice = 1;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button(shading[2]))
+		{
+			this->shaderChoice = 2;
+		}
+		if (ImGui::Button(shading[3]))
+		{
+			this->shaderChoice = 3;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button(shading[4]))
+		{
+			this->shaderChoice = 4;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button(shading[5]))
+		{
+			this->shaderChoice = 5;
+		}		
+		if (ImGui::Button(shading[6]))
+		{
+			this->shaderChoice = 6;
+		}
+		ImGui::Text("Colors");
 		if (ImGui::Button("RandomColors"))
 		{
 			//Random number generator [0;1]
@@ -1056,7 +1082,7 @@ void Simulation::DrawText()
 	this->textRenderer->Draw(this->textShader, "Start: " + std::to_string(this->start), this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 1 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	this->textRenderer->Draw(this->textShader, "Borders: " + std::to_string(this->borders), this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 2 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	
-	std::string shading[] = { "DirLightShading", "ReflectionShading", "NormalShading"};
+	std::string shading[] = { "DirLightShading", "ReflectionShading", "OctreeShading", "GradientShading", "TimeGradientShading", "LayerShading", "NormalShading"};
 	this->textRenderer->Draw(this->textShader, "Shading: " + shading[this->shaderChoice], this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 3 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	this->textRenderer->Draw(this->textShader, "Amount Particles: " + std::to_string(this->amount * 5), this->WINDOW_WIDTH / 2, (float)this->WINDOW_HEIGHT - 4 * (float)this->fontSize, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	
