@@ -8,7 +8,6 @@ Life3D_Particles::Life3D_Particles(glm::vec3 pos, glm::vec3 color)
 	this->model = glm::scale(this->model, glm::vec3(0.08f));
 	this->model = glm::translate(this->model, pos);
 	this->velocity = glm::vec3(0.0f);
-	this->scale = 0.8f;
 	this->color = color;
 }
 
@@ -54,4 +53,5 @@ void Life3D_Particles::update()
 	this->model = glm::scale(this->model, glm::vec3(this->scale));
 }
 
+float Life3D_Particles::scale = 0.8f;
 

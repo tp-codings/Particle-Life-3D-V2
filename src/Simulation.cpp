@@ -129,6 +129,12 @@ void Simulation::update(float deltaTime, int FPS, Camera camera)
 			particle->update();
 		}
 	}
+
+	//Update Particle Scale
+
+	if (this->particles.size() > 0) {
+		this->particles[0][0]->setScale(this->scale);
+	}
 }
 
 void Simulation::render()
@@ -762,16 +768,6 @@ void Simulation::DrawScene()
 		glBindVertexArray(0);
 	}
 
-	//Update Particle Scale
-	int p = 0;
-	for (int i = 0; i < this->particles.size(); i++)
-	{
-		for (auto* particle : this->particles[i])
-		{
-			particle->setScale(this->scale);
-			p++;
-		}
-	}
 	glBindVertexArray(0);
 }
 

@@ -26,7 +26,7 @@ private:
 	glm::vec3 velocity; 
 	glm::mat4 model; 
 	glm::vec3 color;   
-	float scale;
+	static float scale;
 	
 };
 
