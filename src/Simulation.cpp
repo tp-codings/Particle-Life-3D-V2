@@ -245,7 +245,7 @@ void Simulation::initBuffer()
 	//Instanced Rendering Buffer
 	glGenBuffers(1, &instanceVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-	glBufferData(GL_ARRAY_BUFFER, 5 * this->amount * sizeof(glm::mat4), &modelMatrices[0], GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 5 * this->amount * sizeof(glm::mat4), 0, GL_DYNAMIC_DRAW);
 
 	for (unsigned int i = 0; i < this->sphere->meshes.size(); i++)
 	{
@@ -761,12 +761,15 @@ void Simulation::DrawScene()
 	glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, 5 * this->amount * sizeof(glm::mat4), &modelMatrices[0]);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	for (unsigned int i = 0; i < this->sphere->meshes.size(); i++)
 	{
 		glBindVertexArray(this->sphere->meshes[i].VAO);
 		glDrawElementsInstanced(GL_TRIANGLES, static_cast<unsigned int>(this->sphere->meshes[i].indices.size()), GL_UNSIGNED_INT, 0, 5 * this->amount);
 		glBindVertexArray(0);
 	}
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glBindVertexArray(0);
 }
