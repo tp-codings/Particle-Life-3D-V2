@@ -139,7 +139,7 @@ Moving beyond 2D and 3D, exploring the fourth dimension could be the next logica
 
 ## Contact Information
 
-Feel free to reach out to me for any inquiries or collaboration opportunities:
+Feel free to reach out to me:
 
 - **Email:** [tobipaul50@gmail.com](mailto:tobipaul50@gmail.com)
 - **LinkedIn:** [Tobias Paul](https://www.linkedin.com/in/tobias-paul-657513276/)
