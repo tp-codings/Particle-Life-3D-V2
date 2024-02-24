@@ -79,6 +79,7 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 
 ![pl3d1](https://github.com/tp-codings/Particle_Life_3D_V2/assets/118997294/ad6b127a-1838-4c9d-aa79-5de101dd79af)
 
+![pl3d2](https://github.com/tp-codings/Particle_Life_3D_V2/assets/118997294/9d044309-ad54-41a7-a060-5d9445325ca4)
 
 
 # Simulation Concept
