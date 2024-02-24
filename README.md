@@ -16,11 +16,6 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 |------------------------|--------------------------|--------------------------------------|-------------------------------------------|--------------------------|
 | ⭐️⭐️⭐️⭐️⭐️ (5/5)    | 2023          | C++ | OpenGL, GLFW, ImGUI, Freetype | Simulation               |
 
-### Additional Notes
-
-This project leverages the latest technologies to create an immersive simulation experience. It's actively maintained and open to collaboration. Feel free to contribute!
-
-
 # Getting Started
 ## Prerequisites and basic information
 - This application is tested in windows 10/11
