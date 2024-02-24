@@ -3,7 +3,7 @@
 The goal of this project is to develop a particle simulation within a three-dimensional, walkable environment. Particles interact based on attraction and repulsion with adjustable interaction factors, moving accordingly in space. 
 The primary focus is on creating an application that simulates and visualizes this particle behavior. Through a GUI, users can interactively adjust various settings such as attraction factors, particle size, attraction radius, etc., influencing particle behavior in real-time. 
 Crucially, the application should smoothly render thousands of objects simultaneously. Additionally, light effects will be integrated into the simulation. To achieve optimal performance, C++ has been chosen as the programming language. 
-The project aims to deepen understanding of the OpenGL graphics library, rather than aiming for a physically realistic simulation.
+The project aims to deepen understanding of the OpenGL graphics library, rather than aiming for a physically realistic simulation. This Project is based on my little (for sure improvable) ["Engine"](https://github.com/tp-codings/Little_OpenGL_Simulation_Engine/blob/master/README.md) for OpenGL simulations.
 ## Features
 - freely movable camera in 3D space
 - particle simulation based on [Tom Mohrs YouTube video](https://www.youtube.com/watch?v=p4YirERTVF0&t=201s) but in 3D space
