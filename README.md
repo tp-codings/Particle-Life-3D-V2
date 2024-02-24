@@ -4,12 +4,22 @@ The goal of this project is to develop a particle simulation within a three-dime
 The primary focus is on creating an application that simulates and visualizes this particle behavior. Through a GUI, users can interactively adjust various settings such as attraction factors, particle size, attraction radius, etc., influencing particle behavior in real-time. 
 Crucially, the application should smoothly render thousands of objects simultaneously. Additionally, light effects will be integrated into the simulation. To achieve optimal performance, C++ has been chosen as the programming language. 
 The project aims to deepen understanding of the OpenGL graphics library, rather than aiming for a physically realistic simulation.
-
 ## Features
 - freely movable camera in 3D space
 - particle simulation based on [Tom Mohrs YouTube video](https://www.youtube.com/watch?v=p4YirERTVF0&t=201s) but in 3D space
 - many setting options like shading options, sky boxes, distance of interaction, slow motion, attraction values, ...
 - a lot of fun to play around
+
+## Project Overview
+
+| Personal Rating            | **Year of Development**  | **Languages**                        | **Tools**                                 | **Type of Application** |
+|------------------------|--------------------------|--------------------------------------|-------------------------------------------|--------------------------|
+| ⭐️⭐️⭐️⭐️⭐️ (5/5)    | 2023          | C++ | OpenGL, GLFW, ImGUI, Freetype | Simulation               |
+
+### Additional Notes
+
+This project leverages the latest technologies to create an immersive simulation experience. It's actively maintained and open to collaboration. Feel free to contribute!
+
 
 # Getting Started
 ## Prerequisites and basic information
