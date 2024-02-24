@@ -22,6 +22,7 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 - This repo does not provide an executable -> you have to compile your own (I used Visual Studio)
 - I don't guarantee that every corner case has been taken into account. The project is part of my learning process for C++ and OpenGL
 - All dependencies are included in this repo, so it is almost plug and play :)
+- On a RTX4070 and Intel Core i5-13600: 2000 particles each type around 40 FPS
 
 ## Installation
 1. Clone Repository
