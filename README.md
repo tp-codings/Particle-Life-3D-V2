@@ -70,6 +70,17 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 - **3:** Inversion
 - **4:** Grayscale
 
+# Examples
+50k particles
+
+![50k particles](https://github.com/tp-codings/Particle_Life_3D_V2/assets/118997294/9c4f3260-4742-41f1-9fca-44eea83b032a)
+
+![pl3d](https://github.com/tp-codings/Particle_Life_3D_V2/assets/118997294/2e894703-52a9-45b6-850e-6bd970fe63c9)
+
+![pl3d1](https://github.com/tp-codings/Particle_Life_3D_V2/assets/118997294/ad6b127a-1838-4c9d-aa79-5de101dd79af)
+
+
+
 # Simulation Concept
 In this simulation, there are 5 types of particles differentiated only by their color and interaction factors with other particle types. The particles come in red, green, blue, yellow, and white. They can interact with themselves or influence other types of particles. Initially, all particles are randomly distributed within the space, confined by the size of the Border Box. When the simulation is started via the GUI or keyboard, the positions and velocity vectors of the particles are calculated and updated.
 
