@@ -28,8 +28,8 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 `git clone https://github.com/tp-codings/Particle_Life_3D_V2.git`
 2. Build Executable (e.g. Visual Studio)
 
-# 3. User Manual
-## 3.1 Camera Control in Space
+# User Manual
+## Camera Control in Space
 - **W:** Forward (camera direction)
 - **A:** Left
 - **S:** Backward
@@ -40,7 +40,7 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 - **Scroll wheel:** Zoom
 - **Arrow keys:** Control the sun on the sphere around the border box (only in dirLightShading mode)
 
-## 3.2 GUI Usage
+## GUI Usage
 - **F:** Open/Close GUI
 - **TimeFactor:** Slow Motion Factor (useful for chaotic particle behavior)
 - **Distance:** Radius for particle interaction
@@ -57,7 +57,7 @@ The project aims to deepen understanding of the OpenGL graphics library, rather 
 - **Slider:** Set individual interaction factors
 - **DirLight:** Set the color of the incoming directional light
 
-## 3.3 Keyboard Shortcuts
+## Keyboard Shortcuts
 - **R:** Random interaction factors
 - **L:** Toggle Shading Mode
 - **P:** Random Position of particles
@@ -88,40 +88,40 @@ The velocity of a particle at a specific time is then calculated as:
 
 Here, \(\Delta t\) is the time between each frame, \(\text{friction}\) is the friction (a factor between 0 for total friction and 1 for no friction), \(\text{amount}\) is the number of particles of a type, and \(\text{timeFactor}\) is the time factor enabling slow motion.
 
-# 7. Potential Improvements
-## 7.1 Particle Shadow Casting
+# Potential Improvements
+## Particle Shadow Casting
 An opportunity for improvement in the simulation could involve simulating the casting of shadows between individual particles. Currently, all objects behave as completely transparent to light. However, shadow calculations, especially with numerous objects, can be computationally expensive and noticeably impact performance. Directional light, as the sole light source, may pose challenges as objects farther behind could be almost completely obscured by the sheer mass of objects in front.
 
-## 7.2 Optimization with Octrees and Barnes-Hut Algorithm
+## Optimization with Octrees and Barnes-Hut Algorithm
 In addition to Instancing, which primarily enhances efficiency by minimizing CPU-GPU communication, there are other optimization possibilities. Octrees, for instance, are data structures that hierarchically divide space into segments, providing an efficient way to search for other particles in the nearby environment. This allows limiting particle interaction to the immediate surroundings, such as the action radius. The Barnes-Hut Algorithm treats distant particles as cumulative mass points, approximating the force vector on the observed particle. Instead of individually calculating interactions between all particles, groups of particles are considered, minimizing calculation complexity.
 
 Combining both methods could significantly accelerate the simulation on the CPU side by substantially reducing the total number of calculations.
 
-## 7.3 Optimization with GPU Computing
+## Optimization with GPU Computing
 While multithreading allows parallelization of processes, such as nested for-loops, a CPU doesn't have numerous cores designed for parallel calculations. GPUs, with their architecture designed for parallelization, could significantly enhance performance. The bottleneck in my simulation is the `updateInteraction()` function, which calculates particle interactions. Currently, the outer loops linking different particle types are parallelized by the CPU using multithreading. However, within particle types, all particles of two types are compared, requiring a much larger number of calculations. These nested for-loops could be effectively parallelized by the GPU using Compute Shaders, vastly improving simulation performance, potentially enabling real-time simulation of hundreds of thousands of particles.
 
-## 7.4 Clean Code
+## Clean Code
 The architecture of the simulation is likely in need of improvement. Currently, the Engine class encompasses a lot of functionality. Some of this could be outsourced into additional classes for better code organization, such as a Window Manager class, a Buffer Handler, a Renderer, a Helper class, or an Input Handler. Additionally, there might be concepts to make some functions more efficient or straightforward.
 
-## 7.5 Glow/Bloom Effect
+## Glow/Bloom Effect
 Implementing a Glow/Bloom effect can add a radiant shimmer around light sources, making the scene more dynamic. This involves extracting bright areas, applying a blur effect, and then reapplying it to the scene. This could make particles appear to glow.
 
-## 7.6 Dynamic Particle Count Adjustment
+## Dynamic Particle Count Adjustment
 Adding interactivity could include dynamically adjusting the particle count during runtime. For example, a mouse click could introduce another chunk of particles at the cursor position, or sliders could manually add or remove particles from individual types.
 
-## 7.7 Interactively Changeable Types
+## Interactively Changeable Types
 It would be beneficial to be able to add more particle types in addition to the existing 5, creating even more unique structures.
 
-## 7.8 Camera as an Actor
+## Camera as an Actor
 Allowing the camera to actively influence the scene, perhaps by exerting a repulsive force on all particles in the vicinity, could help disperse existing structures.
 
-## 7.9 Mass
+## Mass
 Introducing the concept of mass could mean that objects exert more or less influence on others based on their mass. Particles with larger masses could, for instance, be displayed as larger.
 
-## 7.10 Export Scene as Mesh
+## Export Scene as Mesh
 Exporting a scene at a specific point in time as a mesh, such as an .obj file, could be intriguing for use in other software.
 
-## 7.11 The Fourth Dimension
+## The Fourth Dimension
 Moving beyond 2D and 3D, exploring the fourth dimension could be the next logical step. Mathematically, force calculation wouldn't be more complex than adding another component. A slider could then be used to navigate along the fourth spatial axis.
 
 ## Contact Information
